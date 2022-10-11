@@ -1,7 +1,8 @@
-# Wdio API Requests
+# API Requests from node.js(wdio) + axios 
+
 
 ## Introduction
-Demonstration testing the API  of the mailsac.com mail service using wdio framework 
+Demonstration testing the API  of the mailsac.com mail service using wdio framework + axios 
 ___
 ## Installation:
 1. Install node js v18.9.0 or higher
