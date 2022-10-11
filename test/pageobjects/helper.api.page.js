@@ -25,19 +25,28 @@ class HelperRequests{
     const client = await this.configAxios();
     return client.get( `addresses/${email}/message-count`, )
     .then(response => { 
-    console.log('GET message-count body, ===>>',response.data); 
-    return response.data; })
-    .catch(this.apiFailureCallback);  
+    console.log('GET message-count body, ===>>',response.data);
+    return response.data; 
+    })
+    .catch(this.apiFailureCallback); 
     }
 
   async getListOfMessages(email) { 
     const client = await this.configAxios();
     return client.get( `addresses/${email}/messages`, )
     .then(response => { 
-    console.log('GET a list of messages, ===>>',response.data);
-    console.log(' statusCode===>>',response.status); 
-    return response.data;})
-    .catch(this.apiFailureCallback);  
+    const ListOfMessages = response.data.map((item) => {
+            return {
+                _id: item._id,
+                from: item.from[0].address,
+                to: item.to[0].address,
+                received: item.received,
+                subject: item.subject,
+                ip: item.ip,
+                via: item.via
+            }
+        })
+    console.log('GET a list of messages, ===>>',ListOfMessages);})
   }
         
     
